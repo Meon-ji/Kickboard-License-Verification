@@ -26,6 +26,11 @@ class User(Base):
         uselist=False
     )
 
+    rental_verifications = relationship(
+        "RentalVerification",
+        back_populates="user"
+    )
+
 class DriverLicense(Base):
     __tablename__ = "driver_licenses"
 
@@ -41,3 +46,19 @@ class DriverLicense(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
 
     user = relationship("User", back_populates="driver_license")
+
+class RentalVerification(Base):
+    __tablename__ = "rental_verifications"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    selfie_image_path = Column(String, nullable=False)
+
+    result = Column(Boolean, default=False)
+    fail_reason = Column(String, nullable=True)
+
+    user_id = Column(Integer, ForeignKey("users.id"))
+
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+    user = relationship("User", back_populates="rental_verifications")

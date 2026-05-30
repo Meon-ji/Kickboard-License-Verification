@@ -51,3 +51,12 @@ class RentalVerifyResponse(BaseModel):
     rental_allowed: bool
     message: str
     fail_reason: Optional[str] = None
+
+class RentalHistoryResponse(BaseModel):
+    id: int
+    selfie_image_path: str
+    result: bool
+    fail_reason: Optional[str] = None
+
+    class Config:
+        from_attributes = True
