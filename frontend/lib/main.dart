@@ -4,6 +4,7 @@ import 'screens/login_screen.dart';
 import 'screens/register_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/license_register_screen.dart';
+import 'screens/face_verify_screen.dart';
 
 void main() {
   runApp(const KickboardApp());
@@ -27,6 +28,7 @@ class KickboardApp extends StatelessWidget {
         '/register': (context) => const RegisterScreen(),
         '/home': (context) => const HomeScreen(),
         '/license-register': (context) => const LicenseRegisterScreen(),
+        '/face-verify': (context) => const FaceVerifyScreen(),
       },
     );
   }

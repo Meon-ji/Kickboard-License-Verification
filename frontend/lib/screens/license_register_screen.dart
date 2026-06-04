@@ -32,12 +32,18 @@ class _LicenseRegisterScreenState extends State<LicenseRegisterScreen> {
 
     if (!mounted) return;
 
-    if (status != null) {
+    if (status == null) {
       setState(() {
-        isRegistered = status['license_registered'] ?? false;
-        licenseImagePath = status['license_image_path'];
+        isRegistered = false;
+        licenseImagePath = null;
       });
+      return;
     }
+
+    setState(() {
+      isRegistered = status['license_registered'] ?? false;
+      licenseImagePath = status['license_image_path'];
+    });
   }
 
   Future<void> pickImage() async {
@@ -163,6 +169,12 @@ class _LicenseRegisterScreenState extends State<LicenseRegisterScreen> {
         title: const Text('운전면허증 등록'),
         backgroundColor: const Color(0xFF2563EB),
         foregroundColor: Colors.white,
+        actions: [
+          IconButton(
+            onPressed: loadLicenseStatus,
+            icon: const Icon(Icons.refresh),
+          ),
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -288,7 +300,7 @@ class _LicenseRegisterScreenState extends State<LicenseRegisterScreen> {
                 ),
               ),
 
-              if (licenseImagePath != null) ...[
+              if (isRegistered && licenseImagePath != null) ...[
                 const SizedBox(height: 20),
                 Text(
                   '저장 경로: $licenseImagePath',
