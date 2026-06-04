@@ -109,9 +109,7 @@ class HomeScreen extends StatelessWidget {
                 title: '운전면허증 등록',
                 description: '운전면허증 이미지를 촬영하거나 업로드합니다.',
                 onTap: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('운전면허증 등록 화면은 다음 단계에서 구현합니다.')),
-                  );
+                  Navigator.pushNamed(context, '/license-register');
                 },
               ),
               const SizedBox(height: 16),
