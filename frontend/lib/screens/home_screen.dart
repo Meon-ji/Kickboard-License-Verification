@@ -119,9 +119,7 @@ class HomeScreen extends StatelessWidget {
                 title: '대여 시 얼굴 인증',
                 description: '대여 전 얼굴 사진을 촬영해 본인 여부를 확인합니다.',
                 onTap: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('얼굴 인증 화면은 다음 단계에서 구현합니다.')),
-                  );
+                  Navigator.pushNamed(context, '/face-verify');
                 },
               ),
               const SizedBox(height: 16),

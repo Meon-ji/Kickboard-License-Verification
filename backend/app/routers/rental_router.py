@@ -57,6 +57,28 @@ def verify_face(
             "fail_reason": "운전면허증 미등록"
         }
     
+    if not os.path.exists(license_info.license_image_path):
+        verification = RentalVerification(
+            selfie_image_path="",
+            result=False,
+            fail_reason="운전면허증 이미지 파일 없음",
+            user_id=current_user.id
+        )
+
+        license_info.verified = False
+        license_info.fail_reason = "운전면허증 이미지 파일을 찾을 수 없습니다."
+        current_user.license_verified = False
+
+        db.add(verification)
+        db.commit()
+
+        return {
+            "verified": False,
+            "rental_allowed": False,
+            "message": "등록된 운전면허증 이미지 파일을 찾을 수 없습니다. 다시 등록해주세요.",
+            "fail_reason": "운전면허증 이미지 파일 없음"
+        }
+    
     if not file.content_type.startswith("image/"):
         raise HTTPException(
             status_code=400,

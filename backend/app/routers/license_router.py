@@ -93,6 +93,20 @@ def get_license_status(
             "fail_reason": None
         }
 
+    if not os.path.exists(license_info.license_image_path):
+        license_info.verified = False
+        license_info.fail_reason = "운전면허증 이미지 파일을 찾을 수 없습니다."
+        current_user.license_verified = False
+
+        db.commit()
+
+        return {
+            "license_registered": False,
+            "verified": False,
+            "license_image_path": license_info.license_image_path,
+            "fail_reason": "운전면허증 이미지 파일을 찾을 수 없습니다."
+        }
+
     return {
         "license_registered": True,
         "verified": license_info.verified,
