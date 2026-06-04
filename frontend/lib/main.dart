@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'screens/login_screen.dart';
 import 'screens/register_screen.dart';
 import 'screens/home_screen.dart';
+import 'screens/license_register_screen.dart';
 
 void main() {
   runApp(const KickboardApp());
@@ -19,24 +20,13 @@ class KickboardApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: const Color(0xFFF4F8FF),
-        inputDecorationTheme: InputDecorationTheme(
-          filled: true,
-          fillColor: Colors.white,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
-            borderSide: const BorderSide(color: Color(0xFFD6E4FF)),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
-            borderSide: const BorderSide(color: Color(0xFF2563EB), width: 2),
-          ),
-        ),
       ),
       initialRoute: '/login',
       routes: {
         '/login': (context) => const LoginScreen(),
         '/register': (context) => const RegisterScreen(),
         '/home': (context) => const HomeScreen(),
+        '/license-register': (context) => const LicenseRegisterScreen(),
       },
     );
   }
